@@ -1,0 +1,70 @@
+import java.util.Objects;
+
+public class Restaurant implements Comparable {
+    private String name;
+    private int score;
+
+    public Restaurant(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+
+    public Restaurant() {
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return score == that.score && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, score);
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        Restaurant other = (Restaurant) o;
+        int compareNamesResult = name.compareTo(other.getName());
+        if (compareNamesResult > 0) {
+            return 1;
+        } else if (compareNamesResult < 0) {
+            return -1;
+        } else if (score > other.getScore()) {
+            return -1;
+        } else if (score < other.getScore()) {
+            return 1;
+        }
+        return compareNamesResult;
+    }
+}
